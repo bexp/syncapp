@@ -3,6 +3,9 @@ Android MVP example
 
 A simple Android project which demonstraits MVP architecture while downloading, persisting and syncing of data.
 
+###
+[![Build Status](https://travis-ci.org/bexp/syncapp.svg?branch=master)](https://travis-ci.org/bexp/syncapp)
+
 Project using following libraries:
 - [Dagger 2](http://google.github.io/dagger/)
 - [Butterknife](https://github.com/JakeWharton/butterknife)
