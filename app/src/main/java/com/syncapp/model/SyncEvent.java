@@ -1,5 +1,7 @@
 package com.syncapp.model;
 
+import android.support.annotation.NonNull;
+
 import lombok.Getter;
 
 /**
@@ -7,7 +9,7 @@ import lombok.Getter;
  */
 public class SyncEvent {
     @Getter private String message;
-    public SyncEvent(String message) {
+    public SyncEvent(@NonNull String message) {
         this.message = message;
     }
 }

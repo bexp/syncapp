@@ -1,5 +1,7 @@
 package com.syncapp.ui.presenter;
 
+import android.support.annotation.NonNull;
+
 import com.syncapp.inject.component.AppComponent;
 import com.syncapp.model.SyncEvent;
 import com.syncapp.service.NotificationService;
@@ -8,6 +10,8 @@ import com.syncapp.ui.view.MainView;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+
+import java.net.HttpURLConnection;
 
 import javax.inject.Inject;
 
@@ -23,9 +27,10 @@ public class MainPresenter {
 
     private MainView view;
 
-    public MainPresenter(AppComponent appComponent) {
+    public MainPresenter(@NonNull AppComponent appComponent) {
         appComponent.inject(this);
     }
+
 
     public void onResume() {
         mBus.register(this);
@@ -34,7 +39,7 @@ public class MainPresenter {
         mBus.unregister(this);
     }
 
-    public void setView(MainView view) {
+    public void setView(@NonNull MainView view) {
         this.view = view;
         this.view.showNotifications(mService.getLocalNotifications());
         mService.fetchNotificationsAsync();
