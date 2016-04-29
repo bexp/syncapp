@@ -11,8 +11,6 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import java.net.HttpURLConnection;
-
 import javax.inject.Inject;
 
 /**

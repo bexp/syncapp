@@ -1,8 +1,11 @@
 package com.syncapp.service;
 
 import java.util.List;
+
+import android.content.Context;
 import android.util.Log;
 
+import com.syncapp.R;
 import com.syncapp.inject.component.AppComponent;
 import com.syncapp.model.Notification;
 import com.syncapp.model.SyncEvent;
@@ -33,6 +36,9 @@ public class NotificationService {
     @Inject
     EventBus mBus;
 
+    @Inject
+    Context appContext;
+
     public NotificationService(AppComponent appComponent) {
         appComponent.inject(this);
     }
@@ -51,14 +57,14 @@ public class NotificationService {
                     realmInstance.beginTransaction();
                     realmInstance.copyToRealmOrUpdate(list);
                     realmInstance.commitTransaction();
-                    mBus.post(new SyncEvent("synced with server"));
+                    mBus.post(new SyncEvent(appContext.getString(R.string.synced_event)));
                 }
             }
 
             @Override
             public void onFailure(Throwable t) {
                 Log.d(TAG, "onFailure");
-                mBus.post(new SyncEvent("synced failed"));
+                mBus.post(new SyncEvent(appContext.getString(R.string.sync_failed_event)));
                 t.printStackTrace();
             }
         });

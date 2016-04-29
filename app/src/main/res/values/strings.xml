@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">syncapp</string>
     <string name="welcome">Welcome to SyncApp</string>string>
+    <string name="synced_event">synced with server</string>string>
+    <string name="sync_failed_event">synced failed</string>
 </resources>
