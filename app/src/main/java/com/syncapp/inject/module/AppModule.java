@@ -48,12 +48,6 @@ public class AppModule {
     }
 
     @Provides
-    @Singleton
-    public App application() {
-        return app;
-    }
-
-    @Provides
     Realm provideRealm() {
         return Realm.getDefaultInstance();
     }
