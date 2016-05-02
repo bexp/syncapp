@@ -23,10 +23,11 @@ public class BaseTest extends AndroidTestCase {
     public final void setupBaseTest() throws Exception {
         super.setUp();
         App app = (App) InstrumentationRegistry.getTargetContext().getApplicationContext();
-        TestComponent mComponent = DaggerTestComponent.builder()
+        mTestComponent = DaggerTestComponent.builder()
                  .testModule(new TestModule(app))
                  .build();
     }
+
 
     @Test
     public void setupCheck() throws Exception {

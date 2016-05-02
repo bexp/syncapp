@@ -2,6 +2,7 @@ package com.syncapp.service;
 
 import java.util.List;
 import retrofit.Call;
+import retrofit.Callback;
 import retrofit.http.GET;
 import com.syncapp.model.Notification;
 

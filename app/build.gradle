@@ -10,6 +10,8 @@ android {
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
+        testApplicationId "androidTest.com.syncapp"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -31,6 +33,21 @@ android {
     packagingOptions {
         exclude 'META-INF/services/javax.annotation.processing.Processor' // butterknife
     }
+
+    configurations.all {
+        resolutionStrategy.force 'junit:junit:4.12'
+    }
+
+    testOptions {
+        unitTests.all {
+            // All the usual Gradle options.
+            testLogging {
+                events "passed", "skipped", "failed", "standardOut", "standardError"
+                outputs.upToDateWhen {false}
+                showStandardStreams = true
+            }
+        }
+    }
 }
 
 apply plugin: 'realm-android'
@@ -46,15 +63,17 @@ dependencies {
     final LOMBOK_VERSION = '1.16.8'
     final EVENTBUS_VERSION = '3.0.0'
     final SUPPORT_TEST_VERSION = '0.5'
-    final MOCKITO_VERSION = '2.0.2-beta'
+    final MOCKITO_VERSION = '2.0.9-beta'
 
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    testCompile 'junit:junit:4.12'
+    androidTestCompile 'junit:junit:4.12'
 
     compile "com.android.support:recyclerview-v7:$SUPPORT_LIBRARY_VERSION"
     compile "com.android.support:appcompat-v7:$SUPPORT_LIBRARY_VERSION"
     compile "com.squareup.okhttp:okhttp:$OKHTTP_VERSION"
     compile "com.squareup.retrofit:retrofit:$RETROFIT_VERSION"
+    compile "com.squareup.okhttp:mockwebserver:$OKHTTP_VERSION"
+
     compile "com.squareup.retrofit:converter-gson:$RETROFIT_VERSION"
     compile "com.jakewharton:butterknife:$BUTTERKNIFE_VERSION"
     compile "org.projectlombok:lombok:$LOMBOK_VERSION"

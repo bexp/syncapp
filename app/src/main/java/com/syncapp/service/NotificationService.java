@@ -53,10 +53,12 @@ public class NotificationService {
             @Override
             public void onResponse(retrofit.Response<List<Notification>> response, Retrofit retrofit) {
                 List<Notification> list = response.body();
+                Log.d(TAG, "onResponse: " + list.size());
                 if (list.size() > 0) {
-                    realmInstance.beginTransaction();
-                    realmInstance.copyToRealmOrUpdate(list);
-                    realmInstance.commitTransaction();
+                    Realm realm = Realm.getDefaultInstance();
+                    realm.beginTransaction();
+                    realm.copyToRealmOrUpdate(list);
+                    realm.commitTransaction();
                     mBus.post(new SyncEvent(appContext.getString(R.string.synced_event)));
                 }
             }
